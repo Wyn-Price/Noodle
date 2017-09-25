@@ -1,0 +1,2 @@
+config.density=The density and range of the "noodles" A higher number means a longer world gen time and more noodles.
+generator.noodle=Noodle

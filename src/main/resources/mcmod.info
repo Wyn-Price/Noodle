@@ -1,0 +1,16 @@
+[
+	{
+	  "modid": "noodle",
+	  "name": "Noodle",
+	  "description": "Adds a simple yet fun new worldtype, consisting of noodles",
+	  "version": "0.1.0",
+	  "mcversion": "1.12.1",
+	  "url": "",
+	  "updateUrl": "",
+	  "authorList": ["Wyn Price"],
+	  "credits": "",
+	  "logoFile": "",
+	  "screenshots": [],
+	  "dependencies": []
+	}
+]
