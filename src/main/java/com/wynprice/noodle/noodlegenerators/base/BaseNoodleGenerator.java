@@ -1,4 +1,6 @@
-package com.wynprice.noodle;
+package com.wynprice.noodle.noodlegenerators.base;
+
+import com.wynprice.noodle.saving.NoodleSave;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
@@ -7,20 +9,24 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraft.world.gen.MapGenCaves;
 
-public class NoodleGenerator extends MapGenCaves
+public class BaseNoodleGenerator extends MapGenCaves
 {
 	
-	private final ResourceLocation location;
+	protected ResourceLocation location;
 	
-	public NoodleGenerator(ResourceLocation location) {
-		this.location = location;
-		range = NoodleConfig.density;
+	public BaseNoodleGenerator() {
+		range = NoodleSave.DENSITY;
 	}
-		
+	
+	public BaseNoodleGenerator setLocation(ResourceLocation location) {
+		this.location = location;
+		return this;
+	}
+	
 	@Override
 	protected boolean canReplaceBlock(IBlockState p_175793_1_, IBlockState p_175793_2_) {
 		return p_175793_1_.getBlock() != Blocks.BEDROCK;
-	}
+		}
 	
 	@Override
 	protected void digBlock(ChunkPrimer data, int x, int y, int z, int chunkX, int chunkZ, boolean foundTop,

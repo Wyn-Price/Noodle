@@ -1,2 +1,7 @@
-config.density=The density and range of the "noodles" A higher number means a longer world gen time and more noodles.
 generator.noodle=Noodle
+gui.noodle.custom.type=Noodle Type: %s
+gui.noodle.density=Density: 
+
+gui.noodle.default=Default
+gui.noodle.straight=Straight
+gui.noodle.curly=Curly

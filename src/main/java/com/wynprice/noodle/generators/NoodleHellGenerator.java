@@ -5,25 +5,21 @@ import java.util.Random;
 
 import javax.annotation.Nullable;
 
-import com.wynprice.noodle.NoodleGenerator;
+import com.wynprice.noodle.saving.NoodleSave;
 
 import net.minecraft.block.BlockFalling;
-import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.block.state.pattern.BlockMatcher;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
-import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraft.world.gen.MapGenBase;
-import net.minecraft.world.gen.MapGenCavesHell;
-import net.minecraft.world.gen.NoiseGeneratorOctaves;
 import net.minecraft.world.gen.feature.WorldGenBush;
 import net.minecraft.world.gen.feature.WorldGenFire;
 import net.minecraft.world.gen.feature.WorldGenGlowStone1;
@@ -49,7 +45,7 @@ public class NoodleHellGenerator implements IChunkGenerator
     private final WorldGenBush brownMushroomFeature = new WorldGenBush(Blocks.BROWN_MUSHROOM);
     private final WorldGenBush redMushroomFeature = new WorldGenBush(Blocks.RED_MUSHROOM);
     private MapGenNetherBridge genNetherBridge = new MapGenNetherBridge();
-    private MapGenBase genNetherCaves = new NoodleGenerator(Blocks.NETHERRACK.getRegistryName());
+    private MapGenBase genNetherCaves;
 
     public NoodleHellGenerator(World worldIn, boolean p_i45637_2_, long seed)
     {
@@ -58,6 +54,7 @@ public class NoodleHellGenerator implements IChunkGenerator
         this.rand = new Random(seed);
         worldIn.setSeaLevel(63);
         this.genNetherBridge = (MapGenNetherBridge)net.minecraftforge.event.terraingen.TerrainGen.getModdedMapGen(genNetherBridge, net.minecraftforge.event.terraingen.InitMapGenEvent.EventType.NETHER_BRIDGE);
+        this.genNetherCaves = NoodleSave.TYPE.getWorldGenerator(Blocks.NETHERRACK);
     }
 
     /**

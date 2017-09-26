@@ -5,7 +5,7 @@ import java.util.Random;
 
 import javax.annotation.Nullable;
 
-import com.wynprice.noodle.NoodleGenerator;
+import com.wynprice.noodle.saving.NoodleSave;
 
 import net.minecraft.block.BlockFalling;
 import net.minecraft.entity.EnumCreatureType;
@@ -17,11 +17,9 @@ import net.minecraft.world.WorldEntitySpawner;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.ChunkPrimer;
-import net.minecraft.world.gen.ChunkGeneratorSettings;
 import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraft.world.gen.MapGenBase;
 import net.minecraft.world.gen.NoiseGeneratorPerlin;
-import net.minecraftforge.event.terraingen.TerrainGen;
 
 public class NoodleChunkGenerator implements IChunkGenerator
 {
@@ -30,7 +28,7 @@ public class NoodleChunkGenerator implements IChunkGenerator
     private NoiseGeneratorPerlin surfaceNoise;
     private final World world;
     private double[] depthBuffer = new double[256];
-    private MapGenBase caveGenerator = new NoodleGenerator(Blocks.STONE.getRegistryName());
+    private MapGenBase caveGenerator;
     private Biome[] biomesForGeneration;
 
     public NoodleChunkGenerator(World worldIn, long seed)
@@ -38,6 +36,7 @@ public class NoodleChunkGenerator implements IChunkGenerator
         this.world = worldIn;
         this.rand = new Random(seed);
         this.surfaceNoise = new NoiseGeneratorPerlin(this.rand, 4);
+        this.caveGenerator = NoodleSave.TYPE.getWorldGenerator(Blocks.STONE);
     }
 
     public void setBlocksInChunk(int x, int z, ChunkPrimer primer)
@@ -129,9 +128,7 @@ public class NoodleChunkGenerator implements IChunkGenerator
             }
         }
         }//Forge: End ICE
-
         net.minecraftforge.event.ForgeEventFactory.onChunkPopulate(false, this, this.world, this.rand, x, z, flag);
-
         BlockFalling.fallInstantly = false;
     }
 

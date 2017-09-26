@@ -3,12 +3,10 @@ package com.wynprice.noodle;
 import net.minecraft.world.DimensionType;
 import net.minecraft.world.WorldType;
 import net.minecraftforge.common.DimensionManager;
-import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
 @Mod(modid = Noodle.MODID, name=Noodle.MODNAME, version = Noodle.VERSION)
 public class Noodle
@@ -17,12 +15,6 @@ public class Noodle
     public static final String MODNAME = "Noodle";
     public static final String VERSION = "0.1.0";
     public static WorldType NOODLE;
-    
-    @EventHandler
-    public void pre(FMLPreInitializationEvent event)
-    {
-    	NoodleConfig.preInit();
-    }
     
     @EventHandler
     public void init(FMLInitializationEvent event)
