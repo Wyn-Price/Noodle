@@ -1,6 +1,7 @@
 generator.noodle=Noodle
 gui.noodle.custom.type=Noodle Type: %s
 gui.noodle.density=Density: 
+gui.noodle.longtime=This value is very high, and will take a long time to load initial world generation.
 
 gui.noodle.default=Default
 gui.noodle.straight=Straight

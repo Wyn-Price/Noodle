@@ -1,6 +1,6 @@
 package com.wynprice.noodle.noodlegenerators.base;
 
-import com.wynprice.noodle.saving.NoodleSave;
+import com.wynprice.noodle.NoodleUtils;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
@@ -15,7 +15,7 @@ public class BaseNoodleGenerator extends MapGenCaves
 	protected ResourceLocation location;
 	
 	public BaseNoodleGenerator() {
-		range = NoodleSave.DENSITY;
+		range = NoodleUtils.DENSITY;
 	}
 	
 	public BaseNoodleGenerator setLocation(ResourceLocation location) {

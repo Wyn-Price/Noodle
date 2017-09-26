@@ -5,7 +5,7 @@ import java.util.Random;
 
 import javax.annotation.Nullable;
 
-import com.wynprice.noodle.saving.NoodleSave;
+import com.wynprice.noodle.NoodleUtils;
 
 import net.minecraft.block.BlockFalling;
 import net.minecraft.entity.EnumCreatureType;
@@ -36,7 +36,7 @@ public class NoodleChunkGenerator implements IChunkGenerator
         this.world = worldIn;
         this.rand = new Random(seed);
         this.surfaceNoise = new NoiseGeneratorPerlin(this.rand, 4);
-        this.caveGenerator = NoodleSave.TYPE.getWorldGenerator(Blocks.STONE);
+        this.caveGenerator = NoodleUtils.TYPE.getWorldGenerator(Blocks.STONE);
     }
 
     public void setBlocksInChunk(int x, int z, ChunkPrimer primer)

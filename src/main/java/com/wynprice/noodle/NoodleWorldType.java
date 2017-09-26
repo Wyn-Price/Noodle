@@ -1,7 +1,6 @@
 package com.wynprice.noodle;
 
 import com.wynprice.noodle.generators.NoodleChunkGenerator;
-import com.wynprice.noodle.saving.NoodleSave;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiCreateWorld;
@@ -18,7 +17,7 @@ public class NoodleWorldType extends WorldType
 	@Override
 	public IChunkGenerator getChunkGenerator(World world, String generatorOptions) 
 	{
-		NoodleSave.setUp(world);
+		NoodleUtils.loadValues(generatorOptions);
 		return new NoodleChunkGenerator(world, world.getSeed());
 	}
 	

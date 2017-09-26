@@ -5,7 +5,7 @@ import java.util.Random;
 
 import javax.annotation.Nullable;
 
-import com.wynprice.noodle.saving.NoodleSave;
+import com.wynprice.noodle.NoodleUtils;
 
 import net.minecraft.block.BlockFalling;
 import net.minecraft.block.state.IBlockState;
@@ -54,7 +54,7 @@ public class NoodleHellGenerator implements IChunkGenerator
         this.rand = new Random(seed);
         worldIn.setSeaLevel(63);
         this.genNetherBridge = (MapGenNetherBridge)net.minecraftforge.event.terraingen.TerrainGen.getModdedMapGen(genNetherBridge, net.minecraftforge.event.terraingen.InitMapGenEvent.EventType.NETHER_BRIDGE);
-        this.genNetherCaves = NoodleSave.TYPE.getWorldGenerator(Blocks.NETHERRACK);
+        this.genNetherCaves = NoodleUtils.TYPE.getWorldGenerator(Blocks.NETHERRACK);
     }
 
     /**
