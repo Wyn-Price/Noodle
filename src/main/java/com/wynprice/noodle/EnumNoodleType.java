@@ -49,9 +49,18 @@ public enum EnumNoodleType
 	
 	public MapGenBase getWorldGenerator(Block block)
 	{
-
 		try {
 			return claz.newInstance().setLocation(block.getRegistryName());
+		} catch (InstantiationException | IllegalAccessException e) {
+			e.printStackTrace();
+		};
+		return null;
+	}
+	
+	public MapGenBase getWorldGenerator(Block[] blocks)
+	{
+		try {
+			return claz.newInstance().setBlocks(blocks);
 		} catch (InstantiationException | IllegalAccessException e) {
 			e.printStackTrace();
 		};

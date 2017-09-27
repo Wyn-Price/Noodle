@@ -68,7 +68,7 @@ public class NoodleHellGenerator implements IChunkGenerator
 
         if (this.generateStructures)
             this.genNetherBridge.generate(this.world, x, z, chunkprimer);
-
+        if (!net.minecraftforge.event.ForgeEventFactory.onReplaceBiomeBlocks(this, x, z, chunkprimer, this.world));
         Chunk chunk = new Chunk(this.world, chunkprimer, x, z);
         Biome[] abiome = this.world.getBiomeProvider().getBiomes((Biome[])null, x * 16, z * 16, 16, 16);
         byte[] abyte = chunk.getBiomeArray();

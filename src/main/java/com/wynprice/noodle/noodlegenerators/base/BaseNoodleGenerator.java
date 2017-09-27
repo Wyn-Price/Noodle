@@ -13,6 +13,7 @@ public class BaseNoodleGenerator extends MapGenCaves
 {
 	
 	protected ResourceLocation location;
+	protected Block[] blocks;
 	
 	public BaseNoodleGenerator() {
 		range = NoodleUtils.DENSITY;
@@ -20,6 +21,11 @@ public class BaseNoodleGenerator extends MapGenCaves
 	
 	public BaseNoodleGenerator setLocation(ResourceLocation location) {
 		this.location = location;
+		return this;
+	}
+	
+	public BaseNoodleGenerator setBlocks(Block[] blocks) {
+		this.blocks = blocks;
 		return this;
 	}
 	
@@ -31,6 +37,7 @@ public class BaseNoodleGenerator extends MapGenCaves
 	@Override
 	protected void digBlock(ChunkPrimer data, int x, int y, int z, int chunkX, int chunkZ, boolean foundTop,
 			IBlockState state, IBlockState up) {
-		data.setBlockState(x, y, z, Block.getBlockFromName(location.toString()).getDefaultState());
+		data.setBlockState(x, y, z, location == null ? (blocks == null ? Blocks.AIR.getDefaultState() : blocks[rand.nextInt(blocks.length)].getDefaultState())
+				: Block.getBlockFromName(location.toString()).getDefaultState());
 	}
 }

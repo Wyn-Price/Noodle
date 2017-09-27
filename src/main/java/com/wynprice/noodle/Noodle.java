@@ -3,6 +3,8 @@ package com.wynprice.noodle;
 import net.minecraft.world.DimensionType;
 import net.minecraft.world.WorldType;
 import net.minecraftforge.common.DimensionManager;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -21,6 +23,10 @@ public class Noodle
     {
     	DimensionManager.unregisterDimension(-1);
     	DimensionManager.registerDimension(-1, DimensionType.register(DimensionType.NETHER.getName(), DimensionType.NETHER.getSuffix(), DimensionType.NETHER.getId(), NoodleHellWorldProvider.class, DimensionType.NETHER.shouldLoadSpawn()));
+    	
+    	NoodleModdedDimensionHandler o = new NoodleModdedDimensionHandler();
+    	MinecraftForge.EVENT_BUS.register(o);
+    	FMLCommonHandler.instance().bus().register(o);
     }
     
     @EventHandler
