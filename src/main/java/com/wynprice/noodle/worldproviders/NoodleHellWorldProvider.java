@@ -1,5 +1,6 @@
-package com.wynprice.noodle;
+package com.wynprice.noodle.worldproviders;
 
+import com.wynprice.noodle.Noodle;
 import com.wynprice.noodle.generators.NoodleHellGenerator;
 
 import net.minecraft.world.WorldProviderHell;

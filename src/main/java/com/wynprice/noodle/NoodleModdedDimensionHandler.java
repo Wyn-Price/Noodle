@@ -29,11 +29,11 @@ public class NoodleModdedDimensionHandler
 			int chunkZ = (int) event.getClass().getMethod("getChunkZ").invoke(event);
 			ChunkPrimer primer = new ChunkPrimer();
 			Block[] blocks = (Block[]) event.getClass().getMethod("getNoodleBlocks", int.class, int.class).invoke(event, chunkX, chunkZ);
-			if(!NoodleUtils.catchCompoundFromString(DimensionManager.getWorld(0).getWorldInfo().getGeneratorOptions()).hasKey("noodle_density", 99))
+			if(DimensionManager.getWorld(0).getWorldType() != Noodle.NOODLE)
 				return;
 			NoodleUtils.TYPE.getWorldGenerator(blocks).generate(world, chunkX, chunkZ, primer);
 			event.getClass().getMethod("setPrimer", ChunkPrimer.class).invoke(event, primer);
-		} catch (NoSuchMethodException | NBTException | IllegalAccessException | IllegalArgumentException | InvocationTargetException | ClassCastException e) {
+		} catch (NoSuchMethodException | IllegalAccessException | IllegalArgumentException | InvocationTargetException | ClassCastException e) {
 			return;
 		}
 	}

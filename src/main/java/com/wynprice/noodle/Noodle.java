@@ -1,5 +1,8 @@
 package com.wynprice.noodle;
 
+import com.wynprice.noodle.worldproviders.NoodleEndWorldProvider;
+import com.wynprice.noodle.worldproviders.NoodleHellWorldProvider;
+
 import net.minecraft.world.DimensionType;
 import net.minecraft.world.WorldType;
 import net.minecraftforge.common.DimensionManager;
@@ -15,7 +18,7 @@ public class Noodle
 {
     public static final String MODID = "noodle";
     public static final String MODNAME = "Noodle";
-    public static final String VERSION = "0.2.0";
+    public static final String VERSION = "0.3.0";
     public static WorldType NOODLE;
     
     @EventHandler
@@ -24,9 +27,13 @@ public class Noodle
     	DimensionManager.unregisterDimension(-1);
     	DimensionManager.registerDimension(-1, DimensionType.register(DimensionType.NETHER.getName(), DimensionType.NETHER.getSuffix(), DimensionType.NETHER.getId(), NoodleHellWorldProvider.class, DimensionType.NETHER.shouldLoadSpawn()));
     	
+    	DimensionManager.unregisterDimension(1);
+    	DimensionManager.registerDimension(1, DimensionType.register(DimensionType.THE_END.getName(), DimensionType.THE_END.getSuffix(), DimensionType.THE_END.getId(), NoodleEndWorldProvider.class, DimensionType.THE_END.shouldLoadSpawn()));
+    	
     	NoodleModdedDimensionHandler o = new NoodleModdedDimensionHandler();
     	MinecraftForge.EVENT_BUS.register(o);
-    	FMLCommonHandler.instance().bus().register(o);
+    	FMLCommonHandler.instance().bus().register(o);	
+    
     }
     
     @EventHandler
