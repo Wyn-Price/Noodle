@@ -28,7 +28,6 @@ public class NoodleChunkGenerator implements IChunkGenerator
     private NoiseGeneratorPerlin surfaceNoise;
     private final World world;
     private double[] depthBuffer = new double[256];
-    private MapGenBase caveGenerator;
     private Biome[] biomesForGeneration;
 
     public NoodleChunkGenerator(World worldIn, long seed)
@@ -36,7 +35,6 @@ public class NoodleChunkGenerator implements IChunkGenerator
         this.world = worldIn;
         this.rand = new Random(seed);
         this.surfaceNoise = new NoiseGeneratorPerlin(this.rand, 4);
-        this.caveGenerator = NoodleUtils.TYPE.getWorldGenerator(Blocks.STONE);
     }
 
     public void setBlocksInChunk(int x, int z, ChunkPrimer primer)
@@ -74,7 +72,7 @@ public class NoodleChunkGenerator implements IChunkGenerator
             for(int z1 = 0; z1 < 16; z1++)
             	for(int y1 = 0; y1 < 5; y1++)
             		chunkprimer.setBlockState(x1, y1, z1, Blocks.AIR.getDefaultState());
-        this.caveGenerator.generate(this.world, x, z, chunkprimer);
+        NoodleUtils.TYPE.getWorldGenerator(Blocks.STONE).generate(this.world, x, z, chunkprimer);
         Chunk chunk = new Chunk(this.world, chunkprimer, x, z);
         byte[] abyte = chunk.getBiomeArray();
 

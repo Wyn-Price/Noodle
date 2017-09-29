@@ -4,13 +4,12 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 import net.minecraft.block.Block;
-import net.minecraft.nbt.NBTException;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.event.terraingen.ChunkGeneratorEvent;
 import net.minecraftforge.event.terraingen.PopulateChunkEvent.Populate;
-import net.minecraftforge.fml.common.eventhandler.Event;
+import net.minecraftforge.event.world.WorldEvent.Load;
 import net.minecraftforge.fml.common.eventhandler.Event.Result;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
@@ -36,6 +35,13 @@ public class NoodleModdedDimensionHandler
 		} catch (NoSuchMethodException | IllegalAccessException | IllegalArgumentException | InvocationTargetException | ClassCastException e) {
 			return;
 		}
+	}
+	
+	@SubscribeEvent
+	public void onWorldLoad(Load load)
+	{
+		if(load.getWorld().provider.getDimension() == 0)
+			NoodleUtils.loadValues(load.getWorld().getWorldInfo().getGeneratorOptions());
 	}
 	
 	@SubscribeEvent

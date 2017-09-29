@@ -1,5 +1,6 @@
 package com.wynprice.noodle.noodlegenerators.base;
 
+import com.wynprice.noodle.NoodleConfigManager;
 import com.wynprice.noodle.NoodleUtils;
 
 import net.minecraft.block.Block;
@@ -36,8 +37,11 @@ public class BaseNoodleGenerator extends MapGenCaves
 	
 	@Override
 	protected void digBlock(ChunkPrimer data, int x, int y, int z, int chunkX, int chunkZ, boolean foundTop,
-			IBlockState state, IBlockState up) {
-		data.setBlockState(x, y, z, location == null ? (blocks == null ? Blocks.AIR.getDefaultState() : blocks[rand.nextInt(blocks.length)].getDefaultState())
-				: Block.getBlockFromName(location.toString()).getDefaultState());
+			IBlockState state, IBlockState up) 
+	{
+		data.setBlockState(x, y, z, NoodleConfigManager.hasOverrides(world.provider.getDimension()) ? 
+				NoodleConfigManager.getStatesForDimension(world.provider.getDimension()).get(rand.nextInt(NoodleConfigManager.getStatesForDimension(world.provider.getDimension()).size())) : 
+				(location == null ? (blocks == null ? Blocks.AIR.getDefaultState() : blocks[rand.nextInt(blocks.length)].getDefaultState()) 
+						: Block.getBlockFromName(location.toString()).getDefaultState()));
 	}
 }

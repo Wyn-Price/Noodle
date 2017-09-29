@@ -45,7 +45,6 @@ public class NoodleHellGenerator implements IChunkGenerator
     private final WorldGenBush brownMushroomFeature = new WorldGenBush(Blocks.BROWN_MUSHROOM);
     private final WorldGenBush redMushroomFeature = new WorldGenBush(Blocks.RED_MUSHROOM);
     private MapGenNetherBridge genNetherBridge = new MapGenNetherBridge();
-    private MapGenBase genNetherCaves;
 
     public NoodleHellGenerator(World worldIn, boolean p_i45637_2_, long seed)
     {
@@ -54,7 +53,6 @@ public class NoodleHellGenerator implements IChunkGenerator
         this.rand = new Random(seed);
         worldIn.setSeaLevel(63);
         this.genNetherBridge = (MapGenNetherBridge)net.minecraftforge.event.terraingen.TerrainGen.getModdedMapGen(genNetherBridge, net.minecraftforge.event.terraingen.InitMapGenEvent.EventType.NETHER_BRIDGE);
-        this.genNetherCaves = NoodleUtils.TYPE.getWorldGenerator(Blocks.NETHERRACK);
     }
 
     /**
@@ -64,7 +62,7 @@ public class NoodleHellGenerator implements IChunkGenerator
     {
         this.rand.setSeed((long)x * 341873128712L + (long)z * 132897987541L);
         ChunkPrimer chunkprimer = new ChunkPrimer();
-        this.genNetherCaves.generate(this.world, x, z, chunkprimer);
+        NoodleUtils.TYPE.getWorldGenerator(Blocks.NETHERRACK).generate(this.world, x, z, chunkprimer);
 
         if (this.generateStructures)
             this.genNetherBridge.generate(this.world, x, z, chunkprimer);

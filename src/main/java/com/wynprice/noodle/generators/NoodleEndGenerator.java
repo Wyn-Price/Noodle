@@ -37,7 +37,6 @@ public class NoodleEndGenerator extends ChunkGeneratorEnd
     private MapGenEndCity endCityGen = new MapGenEndCity(this);
     private NoiseGeneratorSimplex islandNoise;
     private Biome[] biomesForGeneration;
-    private final MapGenBase caveGenerator = NoodleUtils.TYPE.getWorldGenerator(Blocks.END_STONE);
 
     public NoodleEndGenerator(World p_i47241_1_, boolean p_i47241_2_, long p_i47241_3_, BlockPos p_i47241_5_)
     {
@@ -66,7 +65,7 @@ public class NoodleEndGenerator extends ChunkGeneratorEnd
         if (this.mapFeaturesEnabled)
             this.endCityGen.generate(this.world, x, z, chunkprimer);
         
-        this.caveGenerator.generate(this.world, x, z, chunkprimer);
+        NoodleUtils.TYPE.getWorldGenerator(Blocks.END_STONE).generate(this.world, x, z, chunkprimer);
 
 
         Chunk chunk = new Chunk(this.world, chunkprimer, x, z);

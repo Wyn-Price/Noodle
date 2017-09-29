@@ -17,7 +17,6 @@ public class NoodleWorldType extends WorldType
 	@Override
 	public IChunkGenerator getChunkGenerator(World world, String generatorOptions) 
 	{
-		NoodleUtils.loadValues(generatorOptions);
 		return new NoodleChunkGenerator(world, world.getSeed());
 	}
 	
