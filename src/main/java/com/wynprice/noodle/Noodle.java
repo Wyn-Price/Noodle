@@ -19,7 +19,7 @@ public class Noodle
 {
     public static final String MODID = "noodle";
     public static final String MODNAME = "Noodle";
-    public static final String VERSION = "0.3.0";
+    public static final String VERSION = "0.4.0";
     public static WorldType NOODLE;
     
     @EventHandler
